@@ -1,14 +1,38 @@
+# SLF4J LOGGING CONFIGURATION:
+#logging:
+#  level:
+#    root: debug
+
+# REDIS CONFIGURATION:
 spring:
-  redis:
-    host: localhost
+#  redis:
+#    host: localhost
+#    password:
+#    port: 6379
+#    lettuce:
+#      shutdown-timeout: 30000
+#      pool:
+#        # Connection pool maximum connections (negative for no limit) (default value is 8)
+#        max-active: 30
+#        # Maximum free connections in connection pool (default value is 8)
+#        max-idle: 8
+#        # Minimum free connections in connection pool (default value is 0)
+#        min-idle: 0
+#  cache:
+#    type: redis
+#    redis:
+#      time-to-live: 60000
+#      cache-null-values: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring-redis?useSSL=false
+    username: root
     password:
-    port: 6379
-    lettuce:
-      shutdown-timeout: 30000
-      pool:
-        # Connection pool maximum connections (negative for no limit) (default value is 8)
-        max-active: 30
-        # Maximum free connections in connection pool (default value is 8)
-        max-idle: 8
-        # Minimum free connections in connection pool (default value is 0)
-        min-idle: 0
+    hikari:
+      initialization-fail-timeout: 0
+  jpa:
+      database-platform: org.hibernate.dialect.MySQL5Dialect
+      generate-ddl: true
+      show-sql: true
+      hibernate:
+        ddl-auto: create
