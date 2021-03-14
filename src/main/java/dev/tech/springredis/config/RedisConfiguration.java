@@ -1,21 +1,21 @@
 package dev.tech.springredis.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
+        import org.springframework.context.annotation.Bean;
+        import org.springframework.context.annotation.Configuration;
+        import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+        import org.springframework.data.redis.core.RedisTemplate;
 
 @Configuration
 public class RedisConfiguration {
     @Bean
-    public LettuceConnectionFactory getLettuceConnectionFactory() {
+    public LettuceConnectionFactory lettuceConnectionFactory() {
         return new LettuceConnectionFactory();
     }
 
     @Bean
-    public RedisTemplate getRedisTemplate() {
+    public RedisTemplate redisTemplate() {
         RedisTemplate redisTemplate = new RedisTemplate();
-        redisTemplate.setConnectionFactory(this.getLettuceConnectionFactory());
+        redisTemplate.setConnectionFactory(this.lettuceConnectionFactory());
 
         return redisTemplate;
     }

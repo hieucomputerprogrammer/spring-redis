@@ -10,25 +10,25 @@ import java.util.List;
 
 @Repository
 public class EmployeeRepository {
-    private final HashOperations hashOperations;
+//    private HashOperations hashOperations;
     private RedisTemplate redisTemplate;
 
     @Autowired
     public EmployeeRepository(RedisTemplate redisTemplate) {
-        this.hashOperations = this.redisTemplate.opsForHash();
+//        this.hashOperations = this.redisTemplate.opsForHash();
         this.redisTemplate = redisTemplate;
     }
 
     public void save(Employee employee) {
-        this.hashOperations.put("EMPLOYEE", employee.getId(), employee);
+        this.redisTemplate.opsForHash().put("EMPLOYEE", employee.getId(), employee);
     }
 
     public List<Employee> findAll() {
-        return this.hashOperations.values("EMPLOYEE");
+        return this.redisTemplate.opsForHash().values("EMPLOYEE");
     }
 
     public Employee findById(Integer id) {
-        return (Employee) this.hashOperations.get("EMPLOYEE", id);
+        return (Employee) this.redisTemplate.opsForHash().get("EMPLOYEE", id);
     }
 
     public void update(Employee employee) {
@@ -36,6 +36,6 @@ public class EmployeeRepository {
     }
 
     public void deleteById(Integer id) {
-        this.hashOperations.delete("EMPLOYEE", id);
+        this.redisTemplate.opsForHash().delete("EMPLOYEE", id);
     }
 }

@@ -26,6 +26,7 @@ public class EmployeeRestApi {
     public List<Employee> getAllEmployees(){
         return this.employeeRepository.findAll();
     }
+
     @GetMapping("/{id}")
     public Employee getEmployeeById(final @PathVariable("id") Integer id){
         return this.employeeRepository.findById(id);
@@ -34,8 +35,8 @@ public class EmployeeRestApi {
     @PutMapping
     public void updateEmployee(final @RequestBody Employee employee){
         this.employeeRepository.update(employee);
-
     }
+
     @DeleteMapping("/{id}")
     public  void deleteEmployeeById(final @PathVariable("id") Integer id){
         this.employeeRepository.deleteById(id);
